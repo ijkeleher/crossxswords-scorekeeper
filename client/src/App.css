@@ -1,0 +1,30 @@
+/* client/src/App.css */
+.App {
+  display: flex;
+}
+
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
