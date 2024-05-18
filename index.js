@@ -12,6 +12,15 @@ const PORT = process.env.PORT || 8000;
 app.use(cors());
 app.use(bodyParser.json());
 
+//for single origin
+// var corsOptions = {
+//   origin: 'http://localhost:3000',
+//   optionsSuccessStatus: 200 // For legacy browser support
+//   }
+
+// app.use(cors(corsOptions));
+
+
 // In-memory data storage for users
 let users = [];
 

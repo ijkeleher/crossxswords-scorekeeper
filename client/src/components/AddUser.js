@@ -8,7 +8,15 @@ const AddUser = ({ onAdd }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newUser = { name };
-    const response = await axios.post('http://localhost:5000/api/users', newUser);
+    const response = await axios({
+      method: "POST",
+      data: newUser,
+      withCredentials: false,
+      url: "http://localhost:8000/api/users",
+      headers: {
+        'Access-Control-Allow-Origin' : 'http://localhost:3000'
+      }
+    });
     onAdd(response.data);
     setName('');
   };
