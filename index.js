@@ -20,7 +20,6 @@ app.use(bodyParser.json());
 
 // app.use(cors(corsOptions));
 
-
 // In-memory data storage for users
 let users = [];
 
@@ -30,7 +29,7 @@ app.get('/api/users', (req, res) => {
 });
 
 // Route to add a new user
-app.post('/api/users', (req, res) => {
+app.post('/api/addUsers', (req, res) => {
   const user = req.body;
   users.push(user);
   res.json(user);

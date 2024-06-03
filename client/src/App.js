@@ -13,7 +13,7 @@ const App = () => {
       try {
         const response = await axios.get({
           method: 'GET',
-          url: 'http://localhost:8000/api/users',
+          url: 'http://localhost:8000/api/getUsers',
           withCredentials: false,
           headers: {
             'Access-Control-Allow-Origin' : 'http://localhost:3000'
@@ -35,8 +35,19 @@ const App = () => {
   const handleUpdateScore = (x, y, score) => {
     const newUsers = [...users];
     newUsers[x].scores = newUsers[x].scores || {};
+    newUsers[y].scores = newUsers[y].scores || {};
+  
+    // Update the score for the user
     newUsers[x].scores[y] = score;
-
+  
+    if (score === 5) {
+      // Automatically set the opponent's score to 0 if it's empty
+      if (!newUsers[y].scores[x]) {
+        newUsers[y].scores[x] = 0;
+      }
+    }
+  
+    // Update wins and losses
     if (score > 0) {
       newUsers[x].wins++;
       newUsers[y].losses++;
@@ -44,7 +55,7 @@ const App = () => {
       newUsers[x].losses++;
       newUsers[y].wins++;
     }
-
+  
     setUsers(newUsers);
   };
 

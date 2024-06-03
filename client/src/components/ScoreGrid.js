@@ -1,12 +1,17 @@
-// client/src/components/ScoreGrid.js
 import React from 'react';
 
 const ScoreGrid = ({ users, onUpdateScore }) => {
   const handleChange = (e, x, y) => {
-    const score = parseInt(e.target.value);
+    const score = parseInt(e.target.value, 10);
     if (score >= 0 && score <= 5) {
       onUpdateScore(x, y, score);
     }
+  };
+
+  const getCellStyle = (value, opposingValue) => {
+    if (value === 5) return { backgroundColor: 'green', color: 'white' };
+    if (opposingValue === 5) return { backgroundColor: 'red', color: 'white' };
+    return {};
   };
 
   return (
@@ -34,7 +39,9 @@ const ScoreGrid = ({ users, onUpdateScore }) => {
                       type="number" 
                       min="0" 
                       max="5" 
+                      value={users[indexX].scores ? users[indexX].scores[indexY] : ''} 
                       onChange={(e) => handleChange(e, indexX, indexY)} 
+                      style={getCellStyle(users[indexX].scores ? users[indexX].scores[indexY] : '', users[indexY].scores ? users[indexY].scores[indexX] : '')}
                     />
                   )}
                 </td>
